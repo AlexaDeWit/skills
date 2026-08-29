@@ -15,6 +15,8 @@ To add a skill: create `<skill-name>/SKILL.md`, commit, and it is live.
 
 ## Skills
 
+- `adopt-orchestration`: onboard a repository to the orchestration process by auditing it
+  against the contract the other skills defer to.
 - `open-pull-request`: commit and PR procedure (signing, DCO, trailers, draft flow).
 - `orientation`: bootstrap a cold task session by retrieval, not ingestion.
 - `orchestrate-implementation`: the team-lead per-PR loop for dispatching implementer and
