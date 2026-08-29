@@ -34,9 +34,17 @@ git commit -S -s -m "<subject>" -m "<body…>" -m "Assisted-by: <Agent Name> (<V
 
 ## 2. The PR body
 
-Follow the project's PR template. Lead with what a reviewer or operator gains or is protected
-from, in two to five sentences a reader outside the subsystem understands on their own. Do not
-narrate the diff, and do not restate the checklist.
+Follow the project's PR template. The body is three things, readable in seconds: the goal, the
+motivation, the consequence. Lead with what a reviewer or operator gains or is protected from,
+in words a reader outside the subsystem understands on their own.
+
+- Never narrate the diff, and never restate a checklist or a gate CI already enforces.
+- Never paste inventories, counts, tables, or verification appendices into the body. That audit
+  trail belongs in the commit message of the change that produced it, or in the report to
+  whoever dispatched the work.
+- A deviation from the issue, or an operator-visible behaviour change, is one sentence each.
+- A review or fix round rewrites the body only when the goal or a consequence changed. It never
+  appends rounds, findings, or fix logs.
 
 ## 3. Draft until hand-off
 
