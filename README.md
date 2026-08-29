@@ -3,16 +3,15 @@
 Personal agent skills, one directory per skill with a `SKILL.md`, following the
 [Agent Skills](https://agentskills.io/specification) standard.
 
-## Origin and current state
+## How these are used
 
-These four skills are verbatim copies of the skills in the
-[Écluse](https://github.com/AlexaDeWit/npm-secure-proxy) repository, ported here on
-2026-08-29. They still carry Écluse-specific content: relative links into that repository,
-`task` targets, CI job names, and project roles.
+This repository is the single management home for personal skills. `~/.claude/skills` is a
+symlink to this clone, so every skill directory here is live at the personal level in Claude
+Code. Personal skills override same-named project skills, so each skill stays project-agnostic
+and defers to the project's own documents (CONTRIBUTING, testing docs, orchestration reference)
+for concrete facts: build targets, gating job names, review requirements.
 
-The plan is to make the general working style project-agnostic here, and leave only the
-procedural project checks (build targets, gate names, repository rules) in each project.
-That split has not happened yet.
+To add a skill: create `<skill-name>/SKILL.md`, commit, and it is live.
 
 ## Skills
 
@@ -22,11 +21,8 @@ That split has not happened yet.
   reviewer subagents.
 - `resume-orchestration`: restore the team-lead seat after compaction or restart.
 
-## Use
+## Origin
 
-Claude Code discovers personal skills from `~/.claude/skills/`. Symlink a skill directory
-there to enable it:
-
-```bash
-ln -s ~/Workspace/skills/<skill-name> ~/.claude/skills/<skill-name>
-```
+Ported on 2026-08-29 from the [Écluse](https://github.com/AlexaDeWit/npm-secure-proxy)
+repository, then made project-agnostic. The Écluse-specific facts the originals carried now
+live in that repository's own documents.
