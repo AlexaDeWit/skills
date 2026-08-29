@@ -45,6 +45,9 @@ in words a reader outside the subsystem understands on their own.
 - A deviation from the issue, or an operator-visible behaviour change, is one sentence each.
 - A review or fix round rewrites the body only when the goal or a consequence changed. It never
   appends rounds, findings, or fix logs.
+- The AI-assistance line names the actual tool (`Assisted-by: <Agent> (<Vendor>)`, filled in).
+  Never leave a template's placeholder verbatim: a disclosure that names no tool discloses
+  nothing, and reads as a template artefact to the reviewer.
 
 ## 3. Draft until hand-off
 
