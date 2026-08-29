@@ -23,7 +23,11 @@ default branch: all code lands through PRs the owner reviews.
 Run this for each DAG node once its dependencies merge.
 
 1. **Pick** a slice once every dependency has merged.
-2. **Build.** Brief an implementer subagent in its own worktree. Carry the owner's acceptance
+2. **Build.** Brief an implementer subagent in its own worktree. The implementer is never a fork
+   of the team-lead thread: dispatch a fresh-context agent whose brief is self-contained,
+   transcribing the conventions it must follow (commit and trailer format, prose register, pin and
+   version policy) instead of inheriting them. A fork carries the lead's framing into the leaf,
+   and the brief stops being auditable on its own. Carry the owner's acceptance
    criteria into the brief verbatim, plus the project's comment budget as a numbered criterion the
    reviewer can count. The brief also restates the owner's boy-scout rule for every file the slice
    edits: decide whether the file earns a rewrite, trim comment blocks over the cap and comments
@@ -36,7 +40,8 @@ Run this for each DAG node once its dependencies merge.
    later PR owns the rebase. The implementer opens the draft PR at its first push, reports the PR
    number and head SHA at once, and exits. It does not idle in a watch loop.
 3. **Evaluate (mandatory).** At that first push, dispatch a fresh-context reviewer pinned to the
-   head SHA, with no exposure to the implementer's reasoning. It runs beside CI and covers Stage A
+   head SHA, with no exposure to the implementer's reasoning. Fresh context means non-inherited:
+   the reviewer is never a fork of the lead or the implementer thread. It runs beside CI and covers Stage A
    (requirements, gating-test evidence, scope) and Stage B (quality, security, and the comment
    count). Critical findings block. Route the fix as a distinct commit: resume the implementer,
    apply a small reviewer-specified fix directly, or brief a fresh agent. Then re-evaluate.
