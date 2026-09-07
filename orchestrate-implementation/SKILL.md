@@ -1,14 +1,27 @@
 ---
 name: orchestrate-implementation
 description: >-
-  Run the team-lead per-PR loop. Decompose an approved design into PR-sized
-  slices, dispatch implementer and fresh-context reviewer subagents, and drive
-  the mandatory two-pass evaluation and the CI gate. Route fixes, and flip only
-  review-passed, gate-green PRs ready for the owner. For post-compaction
-  resume, use resume-orchestration instead.
+  Run the team-lead per-PR loop from a high-level strategy conversation.
+  Dispatch fresh-context implementer and reviewer subagents, then coordinate
+  evaluation, fixes, and the CI gate without filling the lead's context with
+  implementation detail. Use when the user asks to dispatch implementation,
+  coordinate multiple tickets in parallel, or take the orchestrator role. Also
+  use after resume-orchestration restores that role. Do not infer orchestration
+  from a single-ticket worktree, pull request, reviewer, or CI request. For
+  direct ticket work, use implement-ticket.
 ---
 
 # Orchestrate implementation
+
+Use this skill only when the user assigns the current agent the orchestrator role. A restored
+orchestration checkpoint also carries that assignment. The skill can coordinate one or more pull
+requests.
+
+Requests to dispatch implementation or coordinate multiple tickets in parallel assign that role.
+
+Do not invoke it merely because a ticket request names a worktree, pull request, reviewer, or CI.
+Those cues route to [`implement-ticket`](../implement-ticket/SKILL.md), where the current agent
+writes the code.
 
 The team lead's procedure for turning an approved design into merged PRs. The project's
 orchestration reference owns the rationale and the project specifics (slice format, verification
@@ -41,10 +54,11 @@ Run this for each DAG node once its dependencies merge.
    number and head SHA at once, and exits. It does not idle in a watch loop.
 3. **Evaluate (mandatory).** At that first push, dispatch a fresh-context reviewer pinned to the
    head SHA, with no exposure to the implementer's reasoning. Fresh context means non-inherited:
-   the reviewer is never a fork of the lead or the implementer thread. It runs beside CI and covers Stage A
-   (requirements, gating-test evidence, scope) and Stage B (quality, security, and the comment
-   count). Critical findings block. Route the fix as a distinct commit: resume the implementer,
-   apply a small reviewer-specified fix directly, or brief a fresh agent. Then re-evaluate.
+   the reviewer is never a fork of the lead or the implementer thread. It runs beside CI and
+   covers Stage A (requirements, gating-test evidence, scope) and Stage B (quality, security, and
+   the comment count). Critical findings block. Route the fix as a distinct commit: resume the
+   implementer, apply a small reviewer-specified fix directly, or brief a fresh agent. Then
+   re-evaluate.
 4. **Gate.** Own the watch: at the PR-open report, poll plain `gh pr checks` until it stops
    answering "no checks reported" (about 20 seconds between tries), then start one detached
    background watch on the PR (`gh pr checks <pr> --watch` in a background shell) and act on its
