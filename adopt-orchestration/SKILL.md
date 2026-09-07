@@ -26,12 +26,12 @@ home is fine when the constitution's routing table points to it.
 | Constitution: invariants and a context-routing table | `AGENTS.md` | orientation |
 | Commit rules: format, signing, sign-off, AI disclosure | `CONTRIBUTING.md` | open-pull-request |
 | PR rules: template, body register, draft flow | `.github/PULL_REQUEST_TEMPLATE.md` and `CONTRIBUTING.md` | open-pull-request |
-| Gating CI jobs by display name, and the informational contexts | testing doc or orchestration reference | open-pull-request, orchestrate-implementation |
-| Local verification: the check suite and the no-build floor, as runnable commands | `AGENTS.md` or orchestration reference | orchestrate-implementation |
-| Worktree lifecycle commands | `AGENTS.md` or orchestration reference | orchestrate-implementation |
+| Gating CI jobs by display name, and the informational contexts | testing doc or orchestration reference | open-pull-request, implement-ticket, orchestrate-implementation |
+| Local verification: the check suite and the no-build floor, as runnable commands | `AGENTS.md` or orchestration reference | implement-ticket, orchestrate-implementation |
+| Worktree lifecycle commands | `AGENTS.md` or orchestration reference | implement-ticket, orchestrate-implementation |
 | Runbook location: where step-by-step operator procedures live | `runbooks/`, named in the `README.md` architecture map | execute-runbook |
 | Work decomposition: where slices live (in-repo slice files, or GitHub issues with milestones as waves), the status convention, the dependency order | orchestration reference | orchestrate-implementation, resume-orchestration |
-| Definition of done, comment budget included when counted | orchestration reference | orchestrate-implementation |
+| Definition of done, comment budget included when counted | orchestration reference | implement-ticket, orchestrate-implementation |
 | Compaction instruction | `.agents/compact-prompt.md` or equivalent | resume-orchestration |
 | Issue auto-close on merge: on or off | orchestration reference | resume-orchestration |
 
