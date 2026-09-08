@@ -15,8 +15,10 @@ stable detail stays retrievable from repository files.
 ## Delta-based resume
 
 1. **Extract the checkpoint:** identify the objective, active slices, agents/worktrees, PRs,
-   decisions, blockers, verification state, and exact next action from the compacted thread. Treat
-   all git, GitHub, CI, and status claims as provisional.
+   decisions, blockers, verification state, approved scope and repository destination, and exact
+   next action from the compacted thread. Restore the recorded kickoff under
+   [publication authority](../orchestrate-implementation/SKILL.md#publication-authority).
+   Treat all git, GitHub, CI, and status claims as provisional.
 2. **Verify volatile state:** run bounded queries for:
    - the current branch and working tree
    - recent commits relevant to active work
