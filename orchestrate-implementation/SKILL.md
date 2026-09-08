@@ -31,6 +31,18 @@ step needs depth.
 Dispatch implementation only after the owner's explicit kickoff. Never merge and never push to the
 default branch: all code lands through PRs the owner reviews.
 
+## Publication authority
+
+The owner's explicit kickoff for a named repository and scope authorises normal feature-branch
+pushes, draft PR creation and updates, and reviewed fix follow-ups within that scope. Do not ask
+again for each commit or push. Record the approved scope and repository destination in every
+implementer brief and orchestration checkpoint.
+
+This authority does not cover merges, pushes to the default branch, new destinations, secret
+disclosure, releases, or deployments. Sandbox and tool approvals still apply. If a tool refuses
+an action, verify its target and approved scope or ask the owner to clarify. Do not bypass the
+refusal.
+
 ## Per-PR loop
 
 Run this for each DAG node once its dependencies merge.
