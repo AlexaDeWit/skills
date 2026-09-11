@@ -111,7 +111,8 @@ Do not report the work as ready at this point.
 
 Start these two tasks together for the same head commit:
 
-1. Dispatch one fresh-context adversarial reviewer.
+1. Dispatch one fresh-context adversarial reviewer, pinned to Opus in Claude Code (Sol in another
+   ecosystem).
 2. Start a bounded watch of the pull request's required CI checks.
 
 The reviewer must not inherit the implementation conversation or receive its reasoning. Give the
