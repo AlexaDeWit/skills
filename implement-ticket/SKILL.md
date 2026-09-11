@@ -112,8 +112,7 @@ Do not report the work as ready at this point.
 Start these two tasks together for the same head commit:
 
 1. Dispatch one fresh-context adversarial reviewer, pinned to Opus in Claude Code (Sol in another
-   ecosystem), not the frontier tier: Fable in Claude Code hits its rate limit too easily under
-   review load.
+   ecosystem).
 2. Start a bounded watch of the pull request's required CI checks.
 
 The reviewer must not inherit the implementation conversation or receive its reasoning. Give the
