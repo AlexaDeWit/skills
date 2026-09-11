@@ -58,19 +58,25 @@ Run this for each DAG node once its dependencies merge.
    edits: decide whether the file earns a rewrite, trim comment blocks over the cap and comments
    that restate the implementation, scoped to those files and behaviour-preserving, and name what
    was trimmed in the PR body. A minimal diff is not a virtue in a file that is a comment wall.
-   Pin the `model` for design-bearing or security-sensitive work. Pick the verification mode for
-   the host: an idle host runs the project's local check suite before pushing, a shared host runs
-   the project's no-build floor (lint the changed files and fix what it reports, then the
-   formatter last) and lets the PR's CI verify. Disjoint hunks across every open PR, and the
-   later PR owns the rebase. The implementer opens the draft PR at its first push, reports the PR
-   number and head SHA at once, and exits. It does not idle in a watch loop.
+   The orchestrator decides the implementer's `model` per slice: pin the harness's frontier model
+   (Opus in Claude Code, or Sol in another ecosystem) for design-bearing or security-sensitive
+   work, and permit its lighter tier (Sonnet in Claude Code, or Terra in another ecosystem) when
+   the slice is genuinely trivial, such as a config toggle or a single-file mechanical change.
+   Pick the verification mode for the host: an idle host runs the project's local check suite
+   before pushing, a shared host runs the project's no-build floor (lint the changed files and fix
+   what it reports, then the formatter last) and lets the PR's CI verify. Disjoint hunks across
+   every open PR, and the later PR owns the rebase. The implementer opens the draft PR at its
+   first push, reports the PR number and head SHA at once, and exits. It does not idle in a watch
+   loop.
 3. **Evaluate (mandatory).** At that first push, dispatch a fresh-context reviewer pinned to the
-   head SHA, with no exposure to the implementer's reasoning. Fresh context means non-inherited:
-   the reviewer is never a fork of the lead or the implementer thread. It runs beside CI and
-   covers Stage A (requirements, gating-test evidence, scope) and Stage B (quality, security, and
-   the comment count). Critical findings block. Route the fix as a distinct commit: resume the
-   implementer, apply a small reviewer-specified fix directly, or brief a fresh agent. Then
-   re-evaluate.
+   head SHA and to the harness's frontier model (Opus in Claude Code, or Sol in another
+   ecosystem), with no exposure to the implementer's reasoning. Its fast, cheap tier (Fable in
+   Claude Code) hits its rate limit too easily under adversarial review load. Fresh context means
+   non-inherited: the reviewer is never a fork of the lead or the implementer thread. It runs
+   beside CI and covers Stage A (requirements, gating-test evidence, scope) and Stage B (quality,
+   security, and the comment count). Critical findings block. Route the fix as a distinct commit:
+   resume the implementer, apply a small reviewer-specified fix directly, or brief a fresh agent.
+   Then re-evaluate.
 4. **Gate.** Own the watch: at the PR-open report, poll plain `gh pr checks` until it stops
    answering "no checks reported" (about 20 seconds between tries), then start one detached
    background watch on the PR (`gh pr checks <pr> --watch` in a background shell) and act on its
