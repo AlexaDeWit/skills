@@ -26,24 +26,34 @@ stable detail stays retrievable from repository files.
    - open PRs and their draft/check state
    - the issues of PRs merged since the checkpoint. When the repository does not auto-close
      issues on merge, a merged PR's issue stays open until the team lead closes it by hand.
+   - the CI conclusion of every head merged since the checkpoint. A merge state is not a green
+     gate, and an owner can merge ahead of the run that then fails.
    - the status and acceptance criteria of active or next-dispatchable slices
 
-   Then restart the detached background watch on every open draft the loop owns. A gap kills
-   watches.
+   A gap kills watches and dispatched agents alike, and silence looks the same as progress. Sweep
+   `gh pr checks` across every open PR directly, check the liveness of any agent the checkpoint
+   names, then restart the watch on every open draft the loop owns, per
+   [`ci-gate.md`](../orchestrate-implementation/ci-gate.md).
 3. **Retrieve by decision:** read only the sections the next orchestration action needs:
    - per-PR loop, fix routing, evaluation, gate, or guardrails from the project's orchestration
      reference
    - active slice records
    - design sections a blocker or review finding implicates
-4. **Reconcile selective memory:** only if the checkpoint names stale memory, or a current
-   decision depends on it, read `MEMORY.md` and the relevant linked file. Verify its volatile
-   claims before updating or deleting it.
+4. **Reconcile selective memory:** read `MEMORY.md` when the checkpoint names stale memory, when
+   a current decision depends on it, or when there is no checkpoint at all. A restart without one
+   may leave the durable decision queue, the standing holds, and the candidates not yet filed in
+   memory as their only record. Verify a memory's volatile claims before acting on them. A memory
+   that contradicts this skill, another skill, or a project document is stale by default: correct
+   or delete it rather than follow it, and say which you did.
 5. **Report and wait:** summarise what has merged, what is in review, and what is still draft,
    plus blockers or conflicts and the next dispatchable action. List the merged PRs whose issues
    still need closing by hand. Close only an issue whose acceptance criteria the merged PR met,
    never one it merely cross-references. Wait for the owner's explicit kickoff before dispatching
    an implementation build, unless the checkpoint records the kickoff for the active wave and
-   names the next dispatchable issue. Then continue that wave without asking again.
+   names the next dispatchable issue. Then continue that wave without asking again. A kickoff
+   authorises the scope it names and no more. A generic "carry on" resumes the recorded wave. It
+   does not approve a plan still waiting on a ruling, and it does not lift a hold the owner
+   placed.
 
 Do not routinely reread the project's entry point, constitution, contributing guide, style
 guides, or design set. Retrieve one when the next decision actually depends on it.

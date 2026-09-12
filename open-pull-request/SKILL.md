@@ -30,6 +30,10 @@ git commit -S -s -m "<subject>" -m "<body…>" -m "Assisted-by: <Agent Name> (<V
   latter by default, and it asserts joint authorship.
 - **This machine's git has no `--trailer` flag.** Put trailers in literal `-m` lines, or in a `-F`
   message file. `--trailer` errors here.
+- **`git commit --amend -m` replaces the whole message and drops `Signed-off-by:`**, which reds
+  the DCO check. Amend with `-s -S`, or with `--no-edit` when the message stands. An amend that
+  reuses the subject also reads as unchanged to a reviewer, so describe an amend as an amend, from
+  the last head they confirmed.
 - Follow the project's subject format (Conventional Commits where the project requires it).
 
 ## 2. The PR body

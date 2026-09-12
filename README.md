@@ -15,6 +15,10 @@ job names, review requirements.
 To add a skill: create `<skill-name>/SKILL.md`, add its Codex symlink, and commit. The directory
 links make it live in new Claude Code and OpenCode sessions.
 
+A skill may carry supplemental files beside its `SKILL.md` for procedure that several skills share,
+or for detail that would crowd the instruction file. Link to one by relative path, as
+`orchestrate-implementation/ci-gate.md` is linked from three skills.
+
 ## Skills
 
 - `adopt-orchestration`: onboard a repository to the orchestration process by auditing it
