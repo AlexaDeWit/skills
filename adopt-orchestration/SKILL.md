@@ -33,14 +33,19 @@ home is fine when the constitution's routing table points to it.
 | Work decomposition: where slices live (in-repo slice files, or GitHub issues with milestones as waves), the status convention, the dependency order | orchestration reference | orchestrate-implementation, resume-orchestration |
 | Definition of done, comment budget included when counted | orchestration reference | implement-ticket, orchestrate-implementation |
 | Compaction instruction | `.agents/compact-prompt.md` or equivalent | resume-orchestration |
+| Merge posture: who merges, whether merges land ahead of the gate, whether the required up-to-date rule binds them | orchestration reference | orchestrate-implementation, resume-orchestration |
+| Host limits: which test tiers must not run in a subagent or concurrently across worktrees | `AGENTS.md` or orchestration reference | implement-ticket, orchestrate-implementation |
+| Operator conventions a brief must transcribe: banned terms, punctuation, spelling register, the boy-scout rule | the operator's own harness-level instruction file, outside the repository | orchestrate-implementation |
 | Issue auto-close on merge: on or off | orchestration reference | resume-orchestration |
 
 ## Procedure
 
-1. **Audit read-only.** Locate each row's fact. Verify live, not by prose: run the named
-   commands at the `--list` level, read the CI workflow's terminal gate job and its `needs:`,
-   and check `gh` for branch protection, the merge method, and auto-close behaviour. A comment
-   about a setting is not the setting.
+1. **Audit read-only.** Locate each row's fact. A row whose home sits outside the repository is
+   still audited: confirm the file exists and holds the fact, and never let a repository document
+   claim that agents load a rule the repository does not carry. Verify live, not by prose: run
+   the named commands at the `--list` level, read the CI workflow's terminal gate job and its
+   `needs:`, and check `gh` for branch protection, the merge method, and auto-close behaviour. A
+   comment about a setting is not the setting.
 2. **Choose the operating mode with the owner.** Direct mode (the owner commits, PRs at their
    discretion) needs only the first six rows. Orchestrated mode (the per-PR loop with
    subagents) needs every row. The mode is the owner's call per repository and can change

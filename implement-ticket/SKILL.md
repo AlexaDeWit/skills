@@ -136,8 +136,10 @@ reference when one exists. For missing behaviour, accept an acceptance criterion
 reference. The reviewer must state clearly when no blocking findings remain. The reviewer does
 not edit the branch.
 
-Poll `gh pr checks` about every 20 seconds until checks appear. Stop after 10 minutes without a
-check and report the draft pull request as blocked. Then use watch mode for the running checks.
+Follow [`ci-gate.md`](../orchestrate-implementation/ci-gate.md) for the watch. Confirm the pull
+request is mergeable before waiting on anything, guard the start on the gating context rather than
+on the first check to appear, and re-enter the watch while checks are still running. A conflicting
+pull request never gets a run, so rebase it instead of waiting.
 
 Use the repository's documented CI timeout as the watch bound. Use 60 minutes when none exists.
 At the bound, inspect the live job once. Continue for another bound only when timestamps or logs
@@ -150,8 +152,13 @@ Treat each push as a new candidate. A prior review or CI result does not apply t
 
 ## 6. Fix and repeat
 
-Collect the review and CI results for the current head when practical. Check for an active CI run
-before pushing, because a push can cancel it.
+Collect the review and CI results for the current head when practical. Before any follow-up push,
+check that the pull request is still open and check for an active run, per
+[`ci-gate.md`](../orchestrate-implementation/ci-gate.md). A push cancels a running workflow, and a
+squash-merge that lands first strands the fix on a branch with no pull request.
+
+Verify a finding's citation against the diff before acting on it. A reviewer can cite a file, line,
+or symbol that does not exist, and a truncated reviewer's parting note is a lead, never a finding.
 
 Address every substantiated review finding and every failure caused by the change. Re-run the
 affected local checks. Commit and push the fixes under the project's rules.
