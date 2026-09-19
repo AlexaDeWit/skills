@@ -23,6 +23,8 @@ or for detail that would crowd the instruction file. Link to one by relative pat
 
 - `adopt-orchestration`: onboard a repository to the orchestration process by auditing it
   against the contract the other skills defer to.
+- `design-agent-workflow`: design a large multi-agent workflow before writing its script: the
+  ownership shape, the control, verification through remote CI, lanes, models, and the brief.
 - `execute-runbook`: execute a project-local runbook step by step, stopping at the steps a
   human must own.
 - `implement-ticket`: the current agent builds one ticket, then drives its review and CI to a
