@@ -37,6 +37,7 @@ home is fine when the constitution's routing table points to it.
 | Host limits: which test tiers must not run in a subagent or concurrently across worktrees | `AGENTS.md` or orchestration reference | implement-ticket, orchestrate-implementation |
 | Operator conventions a brief must transcribe: banned terms, punctuation, spelling register, the boy-scout rule | the operator's own harness-level instruction file, outside the repository | orchestrate-implementation |
 | Issue auto-close on merge: on or off | orchestration reference | resume-orchestration |
+| Decision records: where a ruling is recorded, and the label for a deferred decision | orchestration reference or `CONTRIBUTING.md` | run-decision-queue |
 
 ## Procedure
 
@@ -51,8 +52,8 @@ home is fine when the constitution's routing table points to it.
    subagents) needs every row. The mode is the owner's call per repository and can change
    later. Repo age does not decide it: a day-old repo with a milestone plan and an issue
    backlog adopts orchestrated mode at once.
-3. **Report gaps one ruling at a time,** each with a recommendation. Record each ruling before
-   the next question.
+3. **Report gaps one ruling at a time,** per
+   [`run-decision-queue`](../run-decision-queue/SKILL.md).
 4. **Scaffold.** Write the smallest file that answers each agreed row, in the repository's own
    register. Do not copy another project's canon: point at a reference example only when the
    owner asks. Land the changes as one PR, per `open-pull-request`.

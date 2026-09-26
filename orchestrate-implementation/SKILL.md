@@ -94,11 +94,9 @@ Run this for each DAG node once its dependencies merge.
 
 - Escalate, don't guess: a bounded attempt, then a decision-ready question with options and a
   recommendation.
-- Surface decisions one at a time, paced by a task list. Record each ruling before the next
-  question.
-- Put a nuanced or still-forming design decision to the owner as prose: the trade-offs, a
-  recommendation, and an invitation to steer. Reserve a choice modal for a crisp, stable,
-  mutually exclusive fork. A modal on a question still being shaped pressures a premature answer.
+- Put more than one open point to the owner through
+  [`run-decision-queue`](../run-decision-queue/SKILL.md): one item at a time, paced by a task
+  list, each ruling recorded before the next question.
 - An owner's kickoff authorises the scope it names. A generic "carry on" does not approve a
   specific plan that is waiting on a ruling.
 - Reference work by PR or issue number, never an internal task ID.
