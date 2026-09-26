@@ -30,10 +30,12 @@ or for detail that would crowd the instruction file. Link to one by relative pat
 - `implement-ticket`: the current agent builds one ticket, then drives its review and CI to a
   ready pull request.
 - `open-pull-request`: commit and PR procedure (signing, DCO, trailers, draft flow).
-- `orientation`: bootstrap a cold task session by retrieval, not ingestion.
 - `orchestrate-implementation`: a team-lead loop for dispatching implementation or coordinating
   multiple tickets in parallel while the current agent stays at the strategy level.
+- `orientation`: bootstrap a cold task session by retrieval, not ingestion.
 - `resume-orchestration`: restore the team-lead seat after compaction or restart.
+- `run-decision-queue`: put open points to the owner one at a time, each with context and one
+  recommendation, and record each ruling before the next.
 
 ## Origin
 
