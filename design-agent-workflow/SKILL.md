@@ -77,6 +77,10 @@ the application fixed.
   the delta, not only the status colour.
 - Allow control edits that the main change forces (an import path, a module name), each with a
   ledger line. A rule with no exceptions blocks every module split.
+- When the outcome metric is noisy, such as hosted load runs, give each change a deterministic proxy
+  as its evidence: identical outputs, allocated bytes, benchmark rows. Measure the noisy metric once,
+  on the aggregate, with interleaved repeats. Two runs of identical code can differ by more than one
+  change's whole gain, so a screen of single runs per change rejects every change.
 
 ## 4. Verify through remote CI, in parallel
 
@@ -119,6 +123,10 @@ dead-code check per commit gave a 13 to 20 minute cycle, and the run crawled.
   not integrate. The reset drops it from the branch, and only the hash recovers it.
 - Run the review of unit N alongside the owner of unit N+1. The reviewer reads with git only and
   builds nothing. Its defects go to the next owner in that lane as a first task.
+- The harness caps the agents one workflow runs at once, at the smaller of 16 and the CPU count less
+  two. Estimate wall time from the total agent-minutes over that cap, not from the lane count. An
+  agent that waits on CI holds a slot: collect CI results in a later stage, when they are likely
+  done, instead of one watcher per unit.
 
 ## 6. Models and cost
 
@@ -155,6 +163,9 @@ dead-code check per commit gave a 13 to 20 minute cycle, and the run crawled.
   bodies and in the report to the owner, not in the pull request body.
 - Give every agent one worktree path and forbid the rest. Forbid amend, force-push, and pushes by
   anyone but the integrator.
+- A judge of worth against cost gets the owner's own examples, quoted, and states a reason for every
+  call. Do not turn the trade-off into numeric thresholds: owners find it hard to put in numbers, and
+  a threshold misfires on the very cases their examples cover.
 
 ## 9. Before dispatch
 
@@ -168,6 +179,11 @@ dead-code check per commit gave a 13 to 20 minute cycle, and the run crawled.
 - [ ] The rulings file exists, and every prompt names it.
 - [ ] A draft pull request shows progress, and the owner knows to read it.
 - [ ] The default branch is green, or the known red is understood.
+- [ ] The script ran end to end with stub agents that return schema-shaped results. A dry run catches
+      a placeholder inside a plain-quoted string, which never interpolates, and a backtick inside a
+      template-literal prompt. Both otherwise fail hours into the run.
+- [ ] For an overnight run: the host will not sleep, and commit signing works past the signing
+      agent's passphrase cache.
 
 ## 10. After the run
 
