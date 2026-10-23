@@ -63,7 +63,7 @@ Run this for each DAG node once its dependencies merge.
    The orchestrator sets the implementer's `model` per slice: Opus in Claude Code (Sol in another
    ecosystem) for work that needs judgement, design-bearing or security-sensitive work above all,
    and Sonnet in Claude Code (Terra in another ecosystem) for a straightforward slice that needs
-   little judgement. Use the frontier tier (Fable in Claude Code) only when the owner asks for it.
+   little judgement. Use Fable in Claude Code only when the owner asks for it.
    Pick the verification mode for the host: an idle host runs the project's local check suite
    before pushing, a shared host runs the project's no-build floor
    (lint the changed files and fix what it reports, then the formatter last) and lets the PR's CI
