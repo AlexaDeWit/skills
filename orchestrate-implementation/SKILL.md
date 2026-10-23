@@ -60,10 +60,12 @@ Run this for each DAG node once its dependencies merge.
    edits: decide whether the file earns a rewrite, trim comment blocks over the cap and comments
    that restate the implementation, scoped to those files and behaviour-preserving, and name what
    was trimmed in the PR body. A minimal diff is not a virtue in a file that is a comment wall.
-   The orchestrator sets the implementer's `model` per slice: higher for design-bearing or
-   security-sensitive work, lighter (Sonnet in Claude Code, Terra in another ecosystem) for a
-   genuinely trivial slice. Pick the verification mode for the host: an idle host runs the
-   project's local check suite before pushing, a shared host runs the project's no-build floor
+   The orchestrator sets the implementer's `model` per slice: Opus in Claude Code (Sol in another
+   ecosystem) for work that needs judgement, design-bearing or security-sensitive work above all,
+   and Sonnet in Claude Code (Terra in another ecosystem) for a straightforward slice that needs
+   little judgement. Use Fable in Claude Code only when the owner asks for it.
+   Pick the verification mode for the host: an idle host runs the project's local check suite
+   before pushing, a shared host runs the project's no-build floor
    (lint the changed files and fix what it reports, then the formatter last) and lets the PR's CI
    verify. Container-backed tiers are the lead's alone: concurrent container suites across
    worktrees thrash one host and orphan containers, so the lead runs them one worktree at a time
@@ -72,8 +74,9 @@ Run this for each DAG node once its dependencies merge.
    and exits. It does not idle in a watch loop.
 3. **Evaluate (mandatory).** At that first push, dispatch a fresh-context reviewer pinned to the
    head SHA and to Opus in Claude Code (Sol in another ecosystem), with no exposure to the
-   implementer's reasoning. Fresh context means non-inherited: the reviewer is never a fork of the
-   lead or the implementer thread. It runs beside CI and covers Stage A (requirements,
+   implementer's reasoning. Opus takes security-sensitive and design-critical reviews too. Fresh
+   context means non-inherited: the reviewer is never a fork of the lead or the implementer
+   thread. It runs beside CI and covers Stage A (requirements,
    gating-test evidence, scope) and Stage B (quality, security, and the comment count). Critical
    findings block. Verify every finding's citation against the diff before acting on it: a reviewer
    can cite a file, line, or symbol that does not exist, and a truncated or killed reviewer's
