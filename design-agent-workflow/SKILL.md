@@ -130,9 +130,12 @@ dead-code check per commit gave a 13 to 20 minute cycle, and the run crawled.
 
 ## 6. Models and cost
 
-- Use a strong mid-tier model as the workhorse: readers, owners, reviewers. Keep the frontier model
-  for the few judgement calls that nothing downstream can repair: a plan that shapes every commit,
-  or the review of the one step that edits the control. Use a light model for git and CI-watch
+- Use a strong mid-tier model for every role that needs judgement: readers, owners, reviewers, and
+  the few calls that nothing downstream can repair, such as a plan that shapes every commit or the
+  review of the one step that edits the control. In Claude Code that model is Opus. It balances
+  cost and confidence better than the frontier tier (Fable), so use the frontier tier only when the
+  owner asks for it. Sonnet in Claude Code is a fine workhorse for straightforward work that
+  needs little judgement. Use a light model (Sonnet or Haiku in Claude Code) for git and CI-watch
   agents. A frontier-heavy fan-out cannot finish inside a subscription quota.
 - Show the model plan as a plain list before dispatch, with the agent count per stage. A table
   posted in the middle of a turn may not render.
